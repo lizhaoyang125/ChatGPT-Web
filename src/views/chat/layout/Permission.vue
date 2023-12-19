@@ -17,26 +17,31 @@ const ms = useMessage()
 
 const loading = ref(false)
 const token = ref('')
+const password = ref('')
 
-const disabled = computed(() => !token.value.trim() || loading.value)
+const disabled = computed(() => !token.value.trim() || !password.value.trim() || loading.value)
 
 async function handleVerify() {
   const secretKey = token.value.trim()
+  const enteredPassword = password.value.trim()
 
-  if (!secretKey)
+  if (!secretKey || enteredPassword !== 'Akira.Pipixia') {
+    ms.error('密码错误或未输入密钥')
     return
+  }
 
   try {
     loading.value = true
     await fetchVerify(secretKey)
     authStore.setToken(secretKey)
-    ms.success('success')
+    ms.success('验证成功')
     window.location.reload()
   }
   catch (error: any) {
-    ms.error(error.message ?? 'error')
+    ms.error(error.message ?? '验证失败')
     authStore.removeToken()
     token.value = ''
+    password.value = ''  // 清除密码输入框
   }
   finally {
     loading.value = false
@@ -64,7 +69,8 @@ function handlePress(event: KeyboardEvent) {
           </p>
           <Icon403 class="w-[200px] m-auto" />
         </header>
-        <NInput v-model:value="token" type="password" placeholder="" @keypress="handlePress" />
+        <NInput v-model:value="token" type="password" placeholder="请输入密钥" />
+        <NInput v-model:value="password" type="password" placeholder="请输入密码" @keypress="handlePress" />
         <NButton
           block
           type="primary"
