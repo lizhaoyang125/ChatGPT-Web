@@ -4,6 +4,31 @@ import { NButton, NInput, NModal, useMessage } from 'naive-ui'
 import { fetchVerify } from '@/api'
 import { useAuthStore } from '@/store'
 import Icon403 from '@/icons/403.vue'
+import AV from 'leancloud-storage';
+// 替换以下信息为你的 LeanCloud 应用程序信息
+const appId = 'nKTP00LEDmPVi5WoVQ2wphHv-gzGzoHsz';
+const appKey = 'QZrVfCMSB3DpjEkdsO9lAAZe';
+AV.init({
+  appId,
+  appKey,
+});
+// 定义查询
+const query = new AV.Query('chatxyz_user');
+
+// 添加查询条件
+query.equalTo('user_name', 'test');
+
+// 执行查询
+query.find().then(
+  (results) => {
+    // 查询成功，results 包含满足条件的数据数组
+    console.log('Query results:', results);
+  },
+  (error) => {
+    // 查询失败，error 包含错误信息
+    console.error('Query error:', error);
+  }
+);
 
 interface Props {
   visible: boolean
