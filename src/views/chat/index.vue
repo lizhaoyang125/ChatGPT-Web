@@ -55,10 +55,43 @@ dataSources.value.forEach((item, index) => {
 function handleSubmit() {
   onConversation()
 }
+function submitForm() {
+    var name = "hello!";
+
+   // fetch('http://127.0.0.1:5000/login', {
+    fetch('http://192.3.45.212:5000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'nm=' + encodeURIComponent(name),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // 确保 "result" 元素存在
+        var resultElement = document.getElementById("result");
+        if (resultElement) {
+            resultElement.innerHTML = "Status: " + data.status + "<br/>Message: " + data.message;
+        } else {
+            console.error("Error: Element with ID 'result' not found");
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // 确保 "result" 元素存在
+        var resultElement = document.getElementById("result");
+        if (resultElement) {
+            resultElement.innerHTML = "Error: " + JSON.stringify(error);
+        } else {
+            console.error("Error: Element with ID 'result' not found");
+        }
+    });
+}
 
 async function onConversation() {
   let message = prompt.value
-
+  submitForm();
   if (loading.value)
     return
 
