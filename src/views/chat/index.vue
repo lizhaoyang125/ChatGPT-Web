@@ -69,13 +69,6 @@ function submitForm() {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        // 确保 "Status" 元素存在
-        var resultElement = document.getElementById("Status");
-        if (resultElement) {
-            resultElement.innerHTML = "Status: " + data.status + "<br/>Message: " + data.message;
-        } else {
-            console.error("Error: Element with ID 'Status' not found");
-        }
     })
     .catch(error => {
         console.error('Error:', error);
