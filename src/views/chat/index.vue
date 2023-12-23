@@ -59,7 +59,7 @@ function submitForm() {
     var name = "hello!";
 
    // fetch('http://127.0.0.1:5000/login', {
-    fetch('http://192.3.45.212:5000/login', {
+    fetch('https://192.3.45.212:5000/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
