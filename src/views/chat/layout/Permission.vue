@@ -22,15 +22,45 @@ const password = ref('')
 
 const disabled = computed(() => !token.value.trim() || !password.value.trim() || loading.value)
 
+async function requestBackend(name:string, password:string) {
+    var formData = new URLSearchParams();
+    formData.append('nm', name);
+    formData.append('pw', password);
+    
+    try {//    fetch('https://www.guitarslice.cn:5000/login', {
+        const response = await fetch('https://www.guitarslice.cn:5000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded',},
+            body: formData,
+        });
+        const data = await response.json();
+        console.log(data["value"]);
+        if(data["value"]==0){return 1;}
+        else { return 0; }
+    } catch (error) {
+        console.error('Error:', error);
+        return 0;
+    }
+}
+
+
 async function handleVerify() {
-  const secretKey = token.value.trim()
+  //const secretKey = token.value.trim()
+  const secretKey= "Zhaoyang.pipixia"
+  const enteredUsername = token.value.trim()
   const enteredPassword = password.value.trim()
 
-  if (!secretKey || enteredPassword !== 'Akira.Pipixia') {
-    ms.error('密码错误或未输入密钥')
+  requestBackend(enteredUsername,enteredPassword)
+  // if (!secretKey || enteredPassword !== 'Akira.Pipixia') {
+  //   ms.error('密码错误或未输入密钥')
+  //   return
+  // }
+  const result = await requestBackend(enteredUsername, enteredPassword);
+  if (result === 0) {
+    ms.error('用户名或密码错误')
     return
   }
-
+  alert("登录成功,剩余登录次数-1");
   try {
     loading.value = true
     await fetchVerify(secretKey)
@@ -70,7 +100,7 @@ function handlePress(event: KeyboardEvent) {
           </p>
           <Icon403 class="w-[200px] m-auto" />
         </header>
-        <NInput v-model:value="token" type="password" placeholder="请输入密钥" />
+        <NInput v-model:value="token" type="password" placeholder="请输入用户名" />
         <NInput v-model:value="password" type="password" placeholder="请输入密码" @keypress="handlePress" />
         <NButton
           block
