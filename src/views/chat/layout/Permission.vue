@@ -35,11 +35,12 @@ async function requestBackend(name:string, password:string) {
         });
         const data = await response.json();
         console.log(data["value"]);
-        if(data["value"]==0){return 1;}
-        else { return 0; }
+        return data["value"]
+        //if(data["value"]==0){return 1;}
+        //else { return 0; }
     } catch (error) {
         console.error('Error:', error);
-        return 0;
+        return 404;
     }
 }
 
@@ -50,15 +51,30 @@ async function handleVerify() {
   const enteredUsername = token.value.trim()
   const enteredPassword = password.value.trim()
 
-  requestBackend(enteredUsername,enteredPassword)
   // if (!secretKey || enteredPassword !== 'Akira.Pipixia') {
   //   ms.error('密码错误或未输入密钥')
   //   return
   // }
   const result = await requestBackend(enteredUsername, enteredPassword);
-  if (result === 0) {
-    ms.error('用户名或密码错误')
-    return
+  // if (result === 0) {
+  //   ms.error('用户名或密码错误,或次数已用尽')
+  //   return
+  // }
+  switch(result)
+  {
+    case 0: 
+      break;
+    case 1:
+      ms.success('您的账号已过期！')
+      return;
+    case 2:
+      ms.success('用户名或密码错误')
+      return;
+    case 3:
+      ms.success('用户名或密码错误')
+      return;
+    default:
+      return;
   }
   alert("登录成功,剩余登录次数-1");
   try {
