@@ -61,6 +61,7 @@ function submitForm() {
   const username = localStorage.getItem('username');
   console.log("test")
   console.log(username)
+  localStorage.clear();
 
 }
 
