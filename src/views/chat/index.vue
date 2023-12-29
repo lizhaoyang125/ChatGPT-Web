@@ -19,8 +19,7 @@ import { t } from '@/locales'
 
 import { globalState } from './layout/globalState';
 // 访问用户名和密码
-const username = globalState.enteredUsername;
-const password = globalState.enteredPassword;
+
 
 
 let controller = new AbortController()
@@ -64,8 +63,11 @@ function handleSubmit() {
   onConversation()
 }
 function submitForm() {
-    console.log(username)
-    console.log(password)
+  const username = globalState.enteredUsername;
+  const password = globalState.enteredPassword;
+  console.log("test")
+  console.log(username)
+  console.log(password)
 }
 
 async function onConversation() {
