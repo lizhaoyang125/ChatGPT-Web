@@ -15,6 +15,8 @@ import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { useChatStore, usePromptStore } from '@/store'
 import { fetchChatAPIProcess } from '@/api'
 import { t } from '@/locales'
+import { useAuthStore } from '@/store'
+const authStore = useAuthStore()
 
 let controller = new AbortController()
 
@@ -61,7 +63,8 @@ function submitForm() {
   const username = localStorage.getItem('username');
   console.log("test")
   console.log(username)
-  localStorage.clear();
+  authStore.removeToken()
+  //localStorage.clear();
 
 }
 
