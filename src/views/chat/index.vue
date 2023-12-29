@@ -16,6 +16,13 @@ import { useChatStore, usePromptStore } from '@/store'
 import { fetchChatAPIProcess } from '@/api'
 import { t } from '@/locales'
 
+
+import { globalState } from './layout/globalState';
+// 访问用户名和密码
+const username = globalState.enteredUsername;
+const password = globalState.enteredPassword;
+
+
 let controller = new AbortController()
 
 const openLongReply = import.meta.env.VITE_GLOB_OPEN_LONG_REPLY === 'true'
@@ -57,22 +64,8 @@ function handleSubmit() {
   onConversation()
 }
 function submitForm() {
-    var name = "hello!";
-
-    fetch('https://www.guitarslice.cn:5000/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'nm=' + encodeURIComponent(name),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    console.log(username)
+    console.log(password)
 }
 
 async function onConversation() {
