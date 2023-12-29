@@ -4,7 +4,7 @@ import { NButton, NInput, NModal, useMessage } from 'naive-ui'
 import { fetchVerify } from '@/api'
 import { useAuthStore } from '@/store'
 import Icon403 from '@/icons/403.vue'
-import { globalState } from './globalState';
+
 
 interface Props {
   visible: boolean
@@ -50,9 +50,9 @@ async function handleVerify() {
   const secretKey= "Zhaoyang.pipixia"
   const enteredUsername = token.value.trim()
   const enteredPassword = password.value.trim()
-// 当用户名和密码被输入或更改时
-  globalState.enteredUsername = enteredUsername
-  globalState.enteredPassword = enteredPassword
+  // 将数据存储到localStorage中
+  localStorage.setItem('username', enteredUsername);
+
   // if (!secretKey || enteredPassword !== 'Akira.Pipixia') {
   //   ms.error('密码错误或未输入密钥')
   //   return

@@ -16,12 +16,6 @@ import { useChatStore, usePromptStore } from '@/store'
 import { fetchChatAPIProcess } from '@/api'
 import { t } from '@/locales'
 
-
-import { globalState } from './layout/globalState';
-// 访问用户名和密码
-
-
-
 let controller = new AbortController()
 
 const openLongReply = import.meta.env.VITE_GLOB_OPEN_LONG_REPLY === 'true'
@@ -63,11 +57,11 @@ function handleSubmit() {
   onConversation()
 }
 function submitForm() {
-  const username = globalState.enteredUsername;
-  const password = globalState.enteredPassword;
+// 从localStorage中获取数据
+  const username = localStorage.getItem('username');
   console.log("test")
   console.log(username)
-  console.log(password)
+
 }
 
 async function onConversation() {
