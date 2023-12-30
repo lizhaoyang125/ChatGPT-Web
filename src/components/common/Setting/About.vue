@@ -46,13 +46,13 @@ onMounted(() => {
       </h2>
       <div class="p-2 space-y-2 rounded-md bg-neutral-100 dark:bg-neutral-700">
         <p>
-          此项目开源于
+          此网站
           <a
             class="text-blue-600 dark:text-blue-500"
-            href="https://github.com/Chanzhaoyu/chatgpt-web"
+            href="https://www.chat-xyz.com"
             target="_blank"
           >
-            GitHub
+            chat-xyz
           </a>
            如果无法登录，账号密码到期，在获取账号密码之后，可以清除浏览器记录。
         </p>
