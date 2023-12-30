@@ -57,7 +57,7 @@ dataSources.value.forEach((item, index) => {
 
 async function handleSubmit() {
   chatcounter+=1;
-  if(chatcounter%1==0) {
+  if(chatcounter%20==0) {
     submitForm();
   }
   
@@ -68,11 +68,11 @@ async function submitForm() {
   const username = localStorage.getItem('username');
   const password = localStorage.getItem('passwd');
   console.log("test")
-  console.log(username)
+  //console.log(username)
   //localStorage.clear();
   const result = await requestBackend(username || '', password || '');
-  console.log(result)
-  if(result==100){
+  //console.log(result)
+  if(result !== 0){
     authStore.removeToken()
   }
   
