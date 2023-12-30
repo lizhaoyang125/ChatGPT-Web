@@ -14,7 +14,7 @@ export interface UserState {
 
 export function defaultSetting(): UserState {
   const username = localStorage.getItem('username');
-  const valid_date = localStorage.getItem('username') ||"";
+  const valid_date = localStorage.getItem('valid_date') ||"";
   return {
     userInfo: {
       avatar: 'https://raw.githubusercontent.com/Chanzhaoyu/chatgpt-web/main/src/assets/avatar.jpg',
