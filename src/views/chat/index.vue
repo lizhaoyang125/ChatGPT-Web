@@ -66,7 +66,7 @@ async function handleSubmit() {
 async function submitForm() {
 // 从localStorage中获取数据
   const username = localStorage.getItem('username');
-  const password = localStorage.getItem('password');
+  const password = localStorage.getItem('passwd');
   console.log("test")
   console.log(username)
   //localStorage.clear();
