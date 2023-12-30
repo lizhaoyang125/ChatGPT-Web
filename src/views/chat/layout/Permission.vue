@@ -35,6 +35,7 @@ async function requestBackend(name:string, password:string) {
         });
         const data = await response.json();
         console.log(data["value"]);
+        localStorage.setItem('valid_date', data["message"]);
         return data["value"]
         //if(data["value"]==0){return 1;}
         //else { return 0; }

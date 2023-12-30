@@ -14,11 +14,12 @@ export interface UserState {
 
 export function defaultSetting(): UserState {
   const username = localStorage.getItem('username');
+  const valid_date = localStorage.getItem('username') ||"";
   return {
     userInfo: {
       avatar: 'https://raw.githubusercontent.com/Chanzhaoyu/chatgpt-web/main/src/assets/avatar.jpg',
       name: username || "",
-      description: 'Star on <a href="https://www.chat-xyz.com" class="text-blue-500" target="_blank" >chat-xyz</a>',
+      description: valid_date, //'Star on <a href="https://www.chat-xyz.com" class="text-blue-500" target="_blank" >chat-xyz</a>',
     },
   }
 }
