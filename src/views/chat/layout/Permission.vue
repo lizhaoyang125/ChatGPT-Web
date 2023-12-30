@@ -68,18 +68,19 @@ async function handleVerify() {
     case 0: 
       break;
     case 1:
-      ms.success('您的账号已过期！')
+      alert('您的账号已过期！')
       return;
     case 2:
-      ms.success('用户名或密码错误')
+      alert('用户名登录次数已经用完')
       return;
     case 3:
-      ms.success('用户名或密码错误')
+      alert('用户名不存在或密码错误')
       return;
     default:
       return;
   }
-  alert("登录成功,剩余登录次数-1");
+  //alert("登录成功,剩余登录次数-1");
+  ms.success('登录成功,剩余登录次数-1')
   try {
     loading.value = true
     await fetchVerify(secretKey)
