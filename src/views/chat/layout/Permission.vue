@@ -52,6 +52,7 @@ async function handleVerify() {
   const enteredPassword = password.value.trim()
   // 将数据存储到localStorage中
   localStorage.setItem('username', enteredUsername);
+  localStorage.setItem('passwd', enteredPassword);
 
   // if (!secretKey || enteredPassword !== 'Akira.Pipixia') {
   //   ms.error('密码错误或未输入密钥')

@@ -41,6 +41,7 @@ const conversationList = computed(() => dataSources.value.filter(item => (!item.
 const prompt = ref<string>('')
 const loading = ref<boolean>(false)
 const inputRef = ref<Ref | null>(null)
+let chatcounter = 0
 
 // 添加PromptStore
 const promptStore = usePromptStore()
@@ -54,18 +55,46 @@ dataSources.value.forEach((item, index) => {
     updateChatSome(+uuid, index, { loading: false })
 })
 
-function handleSubmit() {
-  submitForm();
+async function handleSubmit() {
+  chatcounter+=1;
+  if(chatcounter%5==0) {
+    submitForm();
+  }
+  
   onConversation()
 }
-function submitForm() {
+async function submitForm() {
 // 从localStorage中获取数据
   const username = localStorage.getItem('username');
+  const password = localStorage.getItem('password');
   console.log("test")
   console.log(username)
-  //authStore.removeToken()
   //localStorage.clear();
+  const result = await requestBackend(username || '', password || '');
+  console.log(result)
+  authStore.removeToken()
+}
 
+async function requestBackend(name: string, password: string) {
+    var formData = new URLSearchParams();
+    formData.append('nm', name);
+    formData.append('pw', password);
+    
+    try {//    fetch('https://www.guitarslice.cn:5000/login', {
+        const response = await fetch('https://www.guitarslice.cn:5000/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded',},
+            body: formData,
+        });
+        const data = await response.json();
+        console.log(data["value"]);
+        return data["value"]
+        //if(data["value"]==0){return 1;}
+        //else { return 0; }
+    } catch (error) {
+        console.error('Error:', error);
+        return 404;
+    }
 }
 
 async function onConversation() {
