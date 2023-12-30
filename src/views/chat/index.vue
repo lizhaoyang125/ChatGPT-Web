@@ -57,10 +57,9 @@ dataSources.value.forEach((item, index) => {
 
 async function handleSubmit() {
   chatcounter+=1;
-  if(chatcounter%5==0) {
+  if(chatcounter%1==0) {
     submitForm();
   }
-  
   onConversation()
 }
 async function submitForm() {
@@ -72,7 +71,7 @@ async function submitForm() {
   //localStorage.clear();
   const result = await requestBackend(username || '', password || '');
   console.log(result)
-  authStore.removeToken()
+  //authStore.removeToken()
 }
 
 async function requestBackend(name: string, password: string) {
