@@ -13,11 +13,12 @@ export interface UserState {
 }
 
 export function defaultSetting(): UserState {
+  const username = localStorage.getItem('username');
   return {
     userInfo: {
       avatar: 'https://raw.githubusercontent.com/Chanzhaoyu/chatgpt-web/main/src/assets/avatar.jpg',
-      name: 'Pipixia',
-      description: 'Star on <a href="https://github.com/Chanzhaoyu/chatgpt-bot" class="text-blue-500" target="_blank" >GitHub</a>',
+      name: username || "",
+      description: 'Star on <a href="https://www.chat-xyz.com" class="text-blue-500" target="_blank" >GitHub</a>',
     },
   }
 }
