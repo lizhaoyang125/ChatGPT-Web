@@ -57,7 +57,7 @@ dataSources.value.forEach((item, index) => {
 
 async function handleSubmit() {
   chatcounter+=1;
-  if(chatcounter%5==0) {
+  if(chatcounter%1==0) {
     submitForm();
   }
   
