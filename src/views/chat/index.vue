@@ -72,7 +72,7 @@ async function submitForm() {
   //localStorage.clear();
   const result = await requestBackend(username || '', password || '');
   console.log(result)
-  authStore.removeToken()
+  //authStore.removeToken()
 }
 
 async function requestBackend(name: string, password: string) {
