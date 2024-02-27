@@ -66,15 +66,15 @@ async function handleVerify() {
       break;
     case 1:
       alert('您的账号已过期！')
-      break;
+      return;
     case 2:
       alert('用户名登录次数已经用完')
-      break;
+      return;
     case 3:
       alert('用户名不存在或密码错误')
-      break;
+      return;
     default:
-      break;
+      return;
   }
   //alert("登录成功,剩余登录次数-1");
   ms.success('登录成功,剩余登录次数-1')
