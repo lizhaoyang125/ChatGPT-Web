@@ -59,27 +59,23 @@ async function handleVerify() {
   //   ms.error('密码错误或未输入密钥')
   //   return
   // }
-  const result = await requestBackend(enteredUsername, enteredPassword);
-  // if (result === 0) {
-  //   ms.error('用户名或密码错误,或次数已用尽')
-  //   return
+  // const result = await requestBackend(enteredUsername, enteredPassword);
+  // switch(result)
+  // {
+  //   case 0: 
+  //     break;
+  //   case 1:
+  //     alert('您的账号已过期！')
+  //     return;
+  //   case 2:
+  //     alert('用户名登录次数已经用完')
+  //     return;
+  //   case 3:
+  //     alert('用户名不存在或密码错误')
+  //     return;
+  //   default:
+  //     return;
   // }
-  switch(result)
-  {
-    case 0: 
-      break;
-    case 1:
-      alert('您的账号已过期！')
-      return;
-    case 2:
-      alert('用户名登录次数已经用完')
-      return;
-    case 3:
-      alert('用户名不存在或密码错误')
-      return;
-    default:
-      return;
-  }
   //alert("登录成功,剩余登录次数-1");
   ms.success('登录成功,剩余登录次数-1')
   try {
